@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layout}">
+<head>
+    <title>Medicines</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div layout:fragment="content" class="container" >
+<h1>Medicines</h1>
+<a th:href="@{/medicines/add}">Add Medicine</a>
+<table class="table" style="padding:">
+    <thead class="bg-primary text-white">
+    <tr>
+        <th>Patient Name</th>
+        <th>Medicine Name</th>
+        <th>Dosage</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="medicine : ${medicines}">
+
+        <td th:text="${medicine.patientname}"></td>
+        <td th:text="${medicine.medicinename}"></td>
+        <td th:text="${medicine.dosage}"></td>
+        <td>
+            <button class="btn-btn-success" data-toggle="model"><a th:href="@{/medicines/edit/{id}(id=${medicine.id})}"><i class="fa fa-edit"></i></a></button></td>
+         <td>   <button class="btn-btn-success" data-toggle="model" onclick="return confirm('Are you sure? You want to delete')"><a th:href="@{/medicines/delete/{id}(id=${medicine.id})}"><i class="fa fa-trash"></i></a></button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</div>
+</body>
+</html>

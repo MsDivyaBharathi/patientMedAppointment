@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>View Appointment</title>
+</head>
+<body>
+<div layout:fragment="content" class="container" style="padding:2%">
+    <h4 align="center"> View Patient</h4>
+    <table class="table" style="padding:">
+        <thead class="bg-primary text-white">
+        <tr>
+            <th scope="col">Patient Name</th>
+            <th scope="col">Patient Age</th>
+            <th scope="col">Patient Email</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Medical History</th>
+             <th scope="col">Update</th>
+             <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="e:${pat}">
+            <th th:text="${e.patientname}"></th>
+            <th th:text="${e.age}"></th>
+            <th th:text="${e.email}"></th>
+            <th th:text="${e.phoneNumber}"></th>
+            <th th:text="${e.medicalHistory}"></th>
+             <th>
+                 <button class="btn-btn-success" data-toggle="model"><a th:href="@{/edit_Patient/{id}(id=${e.id})}"><i class="fa fa-edit"></i></a></button>
+             </th>
+             <td> <button class="btn-btn-success" data-toggle="model" onclick="return confirm('Are you sure? You want to delete')"><a th:href="@{/delete_patient/{id}(id=${e.id})}"><i class="fa fa-trash"></i></a></button></td>
+
+         </tr>
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
