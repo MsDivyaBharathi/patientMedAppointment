@@ -1,4 +1,5 @@
 package com.example.patientMedAppointment.entity;
+
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,16 +7,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Document("Users")
+@Document("users")
 public class AuthUser {
 
     @Id
@@ -24,12 +22,21 @@ public class AuthUser {
     @Indexed
     @NotBlank(message = "Name is mandatory")
     private String username;
-    @NotBlank(message = "password is mandatory")
+
+    @NotBlank(message = "Password is mandatory")
     private String password;
-    @NotBlank
+
     private boolean active;
 
-    //@DBRef
-    //private Set<Role> roles;
+    public boolean isActive() {  //  Explicit getter for boolean field
+        return active;
+    }
 
+    public String getUsername() {  //  Explicit getter for username
+        return username;
+    }
+
+    public String getPassword() {  //  Explicit getter for password
+        return password;
+    }
 }
